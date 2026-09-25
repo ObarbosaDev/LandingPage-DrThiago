@@ -6,7 +6,7 @@
 // Configurações
 const CONFIG = {
     whatsapp: {
-        number: '5561996123401',
+        number: '5561981503261',
         defaultMessage: 'Olá! Gostaria de agendar uma consulta com o Dr. Thiago Pinheiro Barbosa.'
     },
     animations: {
@@ -26,14 +26,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // Inicializa todos os módulos
     initNavbar();
     initSmoothScroll();
-    initCounters();
-    initRevealAnimations();
     initContactForm();
     initPhoneMask();
     initBackToTop();
     initWhatsAppButton();
     initFormValidation();
-    initLuxuryEffects();
     
     // Remove loader se existir
     const loader = document.querySelector('.page-loader');
@@ -162,94 +159,12 @@ function initSmoothScroll() {
 }
 
 /* --------------------------------------------------------------------------
-   Contadores Animados
-   -------------------------------------------------------------------------- */
-function initCounters() {
-    const counters = document.querySelectorAll('.stat-number');
-    if (!counters.length) return;
-    
-    const observerOptions = {
-        threshold: 0.5,
-        rootMargin: '0px'
-    };
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const counter = entry.target;
-                if (!counter.hasAttribute('data-count')) {
-                    observer.unobserve(counter);
-                    return;
-                }
-
-                const target = parseInt(counter.getAttribute('data-count'), 10);
-                
-                if (!counter.classList.contains('counted')) {
-                    animateCounter(counter, target);
-                    counter.classList.add('counted');
-                }
-                
-                observer.unobserve(counter);
-            }
-        });
-    }, observerOptions);
-    
-    counters.forEach(counter => observer.observe(counter));
-}
-
-function animateCounter(element, target, duration = 2000) {
-    const startTime = performance.now();
-    const startValue = 0;
-    
-    function updateCounter(currentTime) {
-        const elapsed = currentTime - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        
-        // Easing function (ease-out-cubic)
-        const easeProgress = 1 - Math.pow(1 - progress, 3);
-        
-        const currentValue = Math.floor(startValue + (target - startValue) * easeProgress);
-        element.textContent = currentValue;
-        
-        if (progress < 1) {
-            requestAnimationFrame(updateCounter);
-        } else {
-            element.textContent = target;
-        }
-    }
-    
-    requestAnimationFrame(updateCounter);
-}
-
-/* --------------------------------------------------------------------------
    Animações de Revelação (Scroll)
    -------------------------------------------------------------------------- */
 function initRevealAnimations() {
-    const revealElements = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right');
-    
-    if (!revealElements.length) return;
-    
-    const observerOptions = {
-        threshold: CONFIG.animations.threshold,
-        rootMargin: CONFIG.animations.rootMargin
-    };
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const element = entry.target;
-                const delay = element.dataset.delay || 0;
-                
-                setTimeout(() => {
-                    element.classList.add('revealed');
-                }, parseInt(delay, 10));
-                
-                observer.unobserve(element);
-            }
-        });
-    }, observerOptions);
-    
-    revealElements.forEach(element => observer.observe(element));
+    document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right').forEach((element) => {
+        element.classList.add('revealed');
+    });
 }
 
 /* --------------------------------------------------------------------------
@@ -377,7 +292,7 @@ function initContactForm() {
         }
         
         if (!isFormValid) {
-            showFormMessage('Por favor, preencha todos os campos corretamente.', 'error');
+            showFormMessage('Revise os campos destacados antes de enviar. Precisamos dessas informações para entender sua demanda com segurança.', 'error');
             return;
         }
         
@@ -411,9 +326,9 @@ function initContactForm() {
             // Mostra mensagem de sucesso
             showFormMessage(
                 `<i class="fas fa-check-circle me-2"></i>
-                <strong>Solicitação enviada com sucesso!</strong><br>
-                Em breve entraremos em contato para confirmar sua consulta.<br>
-                <small>Você também pode nos contatar via WhatsApp para agilizar o atendimento.</small>`,
+                <strong>Solicitação preparada com sucesso.</strong><br>
+                Vamos abrir o WhatsApp com sua mensagem para concluir o envio com segurança.<br>
+                <small>Se a janela não abrir, use o botão de WhatsApp no canto da página.</small>`,
                 'success'
             );
             
@@ -434,8 +349,8 @@ function initContactForm() {
             // Mostra mensagem de erro com opção de WhatsApp
             showFormMessage(
                 `<i class="fas fa-exclamation-circle me-2"></i>
-                <strong>Erro ao enviar solicitação.</strong><br>
-                Por favor, tente novamente ou entre em contato diretamente pelo 
+                <strong>Não foi possível preparar o envio.</strong><br>
+                Tente novamente ou fale diretamente pelo 
                 <a href="https://wa.me/${CONFIG.whatsapp.number}" target="_blank" class="text-decoration-underline">WhatsApp</a>.`,
                 'error'
             );
@@ -524,54 +439,7 @@ function initWhatsAppButton() {
    Luxury Effects - Microinteracoes Premium
    -------------------------------------------------------------------------- */
 function initLuxuryEffects() {
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const body = document.body;
-
-    if (!prefersReducedMotion && body) {
-        let ticking = false;
-        window.addEventListener('pointermove', (event) => {
-            if (ticking) return;
-            ticking = true;
-            requestAnimationFrame(() => {
-                const x = (event.clientX / window.innerWidth) * 100;
-                const y = (event.clientY / window.innerHeight) * 100;
-                body.style.setProperty('--cursor-x', `${x}%`);
-                body.style.setProperty('--cursor-y', `${y}%`);
-                ticking = false;
-            });
-        }, { passive: true });
-    }
-
-    if (!prefersReducedMotion) {
-        const parallaxNodes = document.querySelectorAll('.hero-bg-pattern, .profile-bg-pattern');
-        if (parallaxNodes.length) {
-            const updateParallax = throttle(() => {
-                const offset = window.pageYOffset * 0.06;
-                parallaxNodes.forEach((node) => {
-                    node.style.transform = `translate3d(0, ${offset}px, 0)`;
-                });
-            }, 16);
-
-            window.addEventListener('scroll', updateParallax, { passive: true });
-            updateParallax();
-        }
-    }
-
-    if (!prefersReducedMotion) {
-        const magneticButtons = document.querySelectorAll('.btn-gold, .btn-gold-outline, .btn-outline-light, .nav-cta');
-        magneticButtons.forEach((button) => {
-            button.addEventListener('mousemove', (event) => {
-                const rect = button.getBoundingClientRect();
-                const offsetX = event.clientX - (rect.left + rect.width / 2);
-                const offsetY = event.clientY - (rect.top + rect.height / 2);
-                button.style.transform = `translate(${offsetX * 0.08}px, ${offsetY * 0.08}px)`;
-            });
-
-            button.addEventListener('mouseleave', () => {
-                button.style.transform = '';
-            });
-        });
-    }
+    return;
 }
 
 /* --------------------------------------------------------------------------
