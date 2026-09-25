@@ -904,6 +904,16 @@ textarea.form-control {
   padding-bottom: 32px;
 }
 
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr 0.8fr 1fr minmax(320px, 1.2fr);
+  gap: 20px;
+}
+
+.footer-grid > div {
+  min-width: 0;
+}
+
 .footer-about,
 .footer-links-wrapper,
 .footer-contact {
@@ -1090,6 +1100,10 @@ textarea.form-control {
   .about-value-grid {
     grid-template-columns: 1fr;
   }
+
+  .footer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 767.98px) {
@@ -1115,7 +1129,8 @@ textarea.form-control {
     width: 100%;
   }
 
-  .about-credential-rail {
+  .about-credential-rail,
+  .footer-grid {
     grid-template-columns: 1fr;
   }
 
