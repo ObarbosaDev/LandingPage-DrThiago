@@ -352,6 +352,7 @@ li {
   justify-content: center;
   height: 34px;
   min-width: 128px;
+  margin: 0;
   padding: 0 14px;
   border: 1px solid var(--line);
   border-radius: 999px;
@@ -365,7 +366,6 @@ li {
 }
 
 .hero-kicker-line {
-  margin-bottom: 0;
   color: var(--gold);
 }
 
