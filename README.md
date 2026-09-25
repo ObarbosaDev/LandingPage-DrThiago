@@ -1,80 +1,44 @@
-# Site de Advocacia
+# Pinheiro Barbosa Advocacia
 
-Este repositório contém o código-fonte de um site institucional para escritório de advocacia que se encontra em desenvolvimento (“Em Construção”).  
-O objetivo do projeto é disponibilizar uma página web profissional para apresentação do escritório, áreas de atuação, informações institucionais e contato.
+Site institucional estático para o advogado Thiago Pinheiro Barbosa.
 
-## Status do Projeto
+## Estrutura
 
-Em desenvolvimento.  
-O site ainda está em fase de construção e poderá sofrer alterações estruturais, visuais e funcionais.
-
-## Sobre o Projeto
-
-O projeto consiste em um site institucional voltado para escritórios de advocacia, desenvolvido como projeto pessoal e acadêmico.  
-A proposta é oferecer uma base sólida, moderna e profissional para divulgação de serviços jurídicos, respeitando a sobriedade, clareza e credibilidade exigidas pelo setor jurídico.
-
-O layout e a estrutura foram pensados para facilitar futuras personalizações, permitindo a adaptação do site para diferentes escritórios ou profissionais da área do Direito.
-
-## Objetivos
-
-- Criar uma presença digital profissional para escritórios de advocacia  
-- Desenvolver um site institucional claro, organizado e responsivo  
-- Apresentar áreas de atuação e informações institucionais de forma objetiva  
-- Servir como base reutilizável para projetos futuros  
-
-## Tecnologias Utilizadas
-
-As tecnologias utilizadas ou previstas neste projeto incluem:
-
-- HTML5  
-- CSS3  
-- JavaScript  
-
-Outras tecnologias, bibliotecas ou frameworks poderão ser incorporados conforme a evolução do projeto.
-
-## Estrutura do Repositório
-
-Estrutura básica do projeto:
-
+```text
+.
+├── index.html
+├── 404.html
+├── politica-de-privacidade.html
+├── assets/
+│   ├── css/
+│   │   └── styles.css
+│   ├── js/
+│   │   └── script.js
+│   └── images/
+├── package.json
+├── vercel.json
+└── README.md
 ```
 
-/
-├─ assets/            Arquivos de mídia e recursos visuais
-├─ css/               Folhas de estilo
-├─ js/                Scripts JavaScript
-├─ index.html         Página principal
-├─ README.md          Documentação do projeto
+## Stack
 
-````
+- HTML
+- CSS
+- JavaScript
+- Bootstrap via CDN
+- Font Awesome via CDN
 
-A estrutura poderá ser expandida conforme novas funcionalidades forem adicionadas.
+## Deploy
 
-## Como Executar o Projeto Localmente
+Projeto estático. Na Vercel, use:
 
-1. Clone o repositório:
-   ```bash
-   git clone https://github.com/ObarbosaDev/EM-CONSTRUCAO-Site-advocacia.git
-````
+- Framework Preset: `Other`
+- Root Directory: `./`
+- Build Command: vazio
+- Output Directory: vazio
 
-2. Acesse a pasta do projeto:
+## Contato Configurado
 
-   ```bash
-   cd EM-CONSTRUCAO-Site-advocacia
-   ```
-
-3. Abra o arquivo `index.html` diretamente no navegador
-   ou utilize uma extensão como Live Server no Visual Studio Code.
-
-## Próximas Implementações
-
-* Finalização do layout das páginas internas
-* Ajustes de responsividade para dispositivos móveis
-* Criação de páginas institucionais adicionais
-* Integração de formulário de contato
-* Otimização de SEO básico
-* Publicação via GitHub Pages ou serviço similar
-
-## Autor
-
-Matheus Barbosa
-GitHub: [https://github.com/ObarbosaDev](https://github.com/ObarbosaDev)
+- WhatsApp: `+55 61 98150-3261`
+- Instagram: `https://www.instagram.com/adv.pinheirobarbosa/`
+- E-mail: `drpinheirobarbosa.adv@gmail.com`
