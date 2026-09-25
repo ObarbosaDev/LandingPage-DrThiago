@@ -502,6 +502,10 @@ li {
   grid-template-columns: minmax(300px, 0.78fr) minmax(0, 1.22fr);
 }
 
+.contact-shell-extreme {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 .about-portrait-main {
   aspect-ratio: 4 / 5;
 }
@@ -514,8 +518,7 @@ li {
   gap: 14px;
 }
 
-.about-credential-rail,
-.contact-command-grid {
+.about-credential-rail {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
@@ -736,6 +739,7 @@ li {
 }
 
 .contact-command-grid {
+  grid-template-columns: minmax(0, 1fr);
   margin-top: 14px;
 }
 
@@ -747,6 +751,7 @@ li {
 .contact-command-item i,
 .footer-contact-item i,
 .contact-form-badge i {
+  flex-shrink: 0;
   color: var(--gold);
   margin-top: 4px;
 }
@@ -755,7 +760,15 @@ li {
 .footer-contact-item a,
 .contact-command-item a {
   min-width: 0;
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+.contact-command-item strong,
+.contact-command-item a[href*="wa.me"],
+.footer-contact-item a[href^="tel:"],
+.contact-email > span {
+  white-space: nowrap;
 }
 
 .contact-social-rail {
@@ -1074,8 +1087,7 @@ textarea.form-control {
     flex-wrap: wrap;
   }
 
-  .about-value-grid,
-  .contact-command-grid {
+  .about-value-grid {
     grid-template-columns: 1fr;
   }
 }
@@ -1103,8 +1115,7 @@ textarea.form-control {
     width: 100%;
   }
 
-  .about-credential-rail,
-  .contact-command-grid {
+  .about-credential-rail {
     grid-template-columns: 1fr;
   }
 
@@ -1135,6 +1146,29 @@ textarea.form-control {
 @media (max-width: 430px) {
   .brand-meta {
     display: none;
+  }
+
+  .contact-command-item {
+    padding: 14px;
+  }
+
+  .contact-command-item-email {
+    display: grid;
+    grid-template-columns: 20px minmax(0, 1fr);
+    gap: 8px 12px;
+    align-items: center;
+  }
+
+  .contact-command-item-email .contact-text {
+    display: contents;
+  }
+
+  .contact-command-item-email strong {
+    margin-bottom: 0;
+  }
+
+  .contact-command-item-email .contact-email {
+    grid-column: 1 / -1;
   }
 
   .practice-card,
